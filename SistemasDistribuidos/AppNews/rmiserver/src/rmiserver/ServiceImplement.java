@@ -1,11 +1,15 @@
 package rmiserver;
 
-import java.io.IOException;
-import java.net.Socket;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import rmiclient.server.ServiceClient;
 import rmicore.Service;
 import rmicore.domain.News;
 import rmicore.domain.Topic;
@@ -18,6 +22,7 @@ public class ServiceImplement implements Service {
     private ArrayList<Topic> topics = new ArrayList<>();
     private final int maxNews;
     private final int MAX_LENGTH_NEWS = 180;
+    private int sequenciaPortSubscriber = 1000;
 
     public ServiceImplement(int maxNews) throws RemoteException {
         this.maxNews = maxNews;
@@ -28,6 +33,7 @@ public class ServiceImplement implements Service {
         users.add(new User(1, "Gustavo", "gustavo", "gustavo", TypeUser.PUBLISHER));
         users.add(new User(2, "Marcus", "marcus", "marcus", TypeUser.SUBSCRIBER));
         users.add(new User(3, "Willian", "william", "william", TypeUser.PUBLISHER));
+        users.add(new User(4, "Teste", "teste", "teste", TypeUser.SUBSCRIBER));
     }
 
     @Override
@@ -45,24 +51,19 @@ public class ServiceImplement implements Service {
         if(!user.getPassword().equals(password)){
             return null;
         }
+        user.setIp(null);
+        if(user.getType().equals(TypeUser.SUBSCRIBER)){
+            sequenciaPortSubscriber += 1;
+            user.setPort(sequenciaPortSubscriber);
+        }
         return user;
     }
 
     @Override
-    public boolean doConnectionSocket(User user, String ip) throws RemoteException {
-        user.setIp(ip);
-        Socket socket = null;
-        try {
-            socket = new Socket(ip, 12345);
-        } catch (IOException e) {
-            return false;
-        }
-        user.setSocket(socket);
-        return true;
-    }
-
-    @Override
     public Topic addTopic(User user, String name) throws RemoteException {
+        if(user == null || name == null || name.isEmpty()){
+            return null;
+        }
         Topic topic = getTopicByName(name);
         if(topic != null){
             return topic;
@@ -75,9 +76,9 @@ public class ServiceImplement implements Service {
     @Override
     public ArrayList<String> consultTopicExistings() throws RemoteException {
         ArrayList<String> str = new ArrayList<>();
-        for(Topic t : topics){
+        topics.forEach((t) -> {
             str.add(t.getName());
-        }
+        });
         return str;
     }
 
@@ -99,18 +100,17 @@ public class ServiceImplement implements Service {
         return news;                
     }
     
-    private void shareNewsWithSubscribers(News news, Topic topic){
-        topic.getSubscribers().stream().filter((s) -> (s.getSocket() != null)).forEach((s) -> {
-            String newsStr = "Tópico: " + topic.getName() + "\n" + news.getContent() + "\n\n";
-            byte[] bytes = newsStr.getBytes();
+    private void shareNewsWithSubscribers(News news, Topic topic) {        
+        String newsStr = "Tópico: " + topic.getName() + "\n" + news.getContent() + "\n\n";
+        topic.getSubscribers().stream().filter((s) -> (s.getPort() != 0 && !s.getIp().isEmpty())).forEach((s) -> {
             try {
-                s.getSocket().getOutputStream().write(bytes);
-                s.getSocket().getOutputStream().flush();
-            } catch (IOException ex) {
-                s.setSocket(null);
-                System.out.println("Usuário desconectado: " + s.getName());                                        
+                Registry registry = LocateRegistry.getRegistry(s.getIp(), s.getPort());
+                ServiceClient rmcli = (ServiceClient) registry.lookup(s.getIp() + "/serviceclient");
+                rmcli.receiveNews(newsStr);
+            } catch (RemoteException | NotBoundException ex) {
+                Logger.getLogger(ServiceImplement.class.getName()).log(Level.SEVERE, null, ex);
             }
-        });
+        });            
     }
 
     @Override
@@ -182,5 +182,4 @@ public class ServiceImplement implements Service {
     public void restoreTopicsAndNews(ArrayList<Topic> topics) throws RemoteException {
         this.topics = topics;
     }
-
 }

@@ -1,26 +1,17 @@
 package rmiclient.frames;
 
-import java.io.IOException;
-import static java.lang.System.exit;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.rmi.NotBoundException;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import rmiclient.Publisher;
-import rmiclient.Subscriber;
 import rmicore.Service;
 import rmicore.domain.User;
 import rmicore.enums.TypeUser;
 
 public class LoginFrame extends javax.swing.JFrame {
 
-    private static Service rm;
+    private final Service rm;
 
     public LoginFrame(Service rm) {
         initComponents();
@@ -50,6 +41,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
 
         l_usuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         l_usuario.setText("Usuário:");
@@ -133,20 +125,21 @@ public class LoginFrame extends javax.swing.JFrame {
         try {
             User user = rm.login(tf_username.getText(), new String(tf_password.getPassword()));
             if(user != null){
-                JOptionPane.showMessageDialog(null, "Usuário " + user.getName() + " logado :)");
                 if(user.getType().equals(TypeUser.PUBLISHER)){
-                    Publisher publisher = new Publisher(rm, user);
-                    publisher.HomePublisher();
+                    HomePublisherFrame hpf = new HomePublisherFrame(rm, user);
+                    hpf.setVisible(true);
                 } else {
-                    Subscriber subscriber = new Subscriber(rm, user);                    
-                    subscriber.HomeSubscriber();
+                    HomeSubscriberFrame hsf = new HomeSubscriberFrame(rm, user);
+                    hsf.setVisible(true);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos :(");                
             }
         } catch (RemoteException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao efetuar login: " + ex.getMessage());
-        }        
+        } catch (UnknownHostException ex) {
+            JOptionPane.showMessageDialog(null, "Erro na busca do IP do cliente: " + ex.getMessage());
+        }
     }//GEN-LAST:event_bt_loginActionPerformed
 
     private void tf_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tf_usernameActionPerformed
@@ -154,7 +147,8 @@ public class LoginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_tf_usernameActionPerformed
 
     private void bt_semloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_semloginActionPerformed
-        JOptionPane.showMessageDialog(null, "Não implementado!");
+        NoUserFrame nuf = new NoUserFrame(rm);
+        nuf.setVisible(true);
     }//GEN-LAST:event_bt_semloginActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

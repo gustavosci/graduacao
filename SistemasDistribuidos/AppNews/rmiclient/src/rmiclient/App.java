@@ -1,9 +1,13 @@
 package rmiclient;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Properties;
 import rmiclient.frames.LoginFrame;
 import rmicore.Service;
 
@@ -11,23 +15,21 @@ public class App {
  
     private static Service rm;
     
-    public static void main(String[] args) throws RemoteException, NotBoundException {
-        Registry registry = LocateRegistry.getRegistry("127.0.0.1", 9999);
-        rm = (Service) registry.lookup("127.0.0.1/service");
-        initialFrame();
+    public static Properties getProp() throws IOException {
+        Properties props = new Properties();
+        FileInputStream file = new FileInputStream("src/rmiclient/resources/rmserver.properties");
+        props.load(file);
+        return props;
     }
-
-    private static void initialFrame() throws RemoteException {
+    
+    public static void main(String[] args) throws RemoteException, NotBoundException, IOException {
+        Properties prop = getProp();
+        String hostServer = prop.getProperty("prop.server.host");
+        String portServer = prop.getProperty("prop.server.port");
+        
+        Registry registry = LocateRegistry.getRegistry(hostServer, Integer.parseInt(portServer));
+        rm = (Service) registry.lookup(hostServer + "/service");
         LoginFrame loginFrm = new LoginFrame(rm);
         loginFrm.setVisible(true);
     }
-    
-    private static void consultNewsByDate() throws RemoteException {
-    
-    }
-     
-    private static void consultLastNewsOfTopic() throws RemoteException {
-    
-    }
-    
 }

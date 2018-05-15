@@ -8,8 +8,7 @@ import rmicore.Service;
 
 public class Server {
     
-    public static void main(String[] args) throws RemoteException {
-        
+    public static void main(String[] args) throws RemoteException {        
         Registry registry = LocateRegistry.createRegistry(9999);
         ServiceImplement srvImp = new ServiceImplement(5);
         Service serv = (Service) UnicastRemoteObject.exportObject(srvImp, 0);

@@ -1,7 +1,6 @@
 package rmicore.domain;
 
 import java.io.Serializable;
-import java.net.Socket;
 import rmicore.enums.TypeUser;
 
 public class User implements Serializable{
@@ -12,7 +11,7 @@ public class User implements Serializable{
     private String password;
     private TypeUser type;
     private String ip;
-    private Socket socket;
+    private int port;
 
     public User(Integer id, String name, String username, String password, TypeUser type) {
         this.id = id;
@@ -66,16 +65,17 @@ public class User implements Serializable{
         return ip;
     }
 
-    public Socket getSocket() {
-        return socket;
-    }
-    
     public void setIp(String ip) {
         this.ip = ip;
     }
 
-    public void setSocket(Socket socket) {
-        this.socket = socket;
+    public int getPort() {
+        return port;
     }
-    
+
+    public void setPort(int port) {
+        this.port = port;
+    }
+
+
 }

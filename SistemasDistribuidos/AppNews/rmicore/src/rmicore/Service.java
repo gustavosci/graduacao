@@ -83,16 +83,7 @@ public interface Service extends Remote{
      * @throws RemoteException 
      */
     public String consultLastNewsOfTopic(String topic) throws RemoteException;
-    
-    /**
-     * 
-     * @param user leitor
-     * @param ip ip da máquina local do leitor
-     * @return boolean indica se criou a conexão socket com sucesso
-     * @throws RemoteException 
-     */
-    public boolean doConnectionSocket(User user, String ip) throws RemoteException;
-    
+        
     // MÉTODOS PARA BACKUP
     /**
      * 

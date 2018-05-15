@@ -78,6 +78,7 @@ public class BackupFrame extends javax.swing.JFrame {
     private void btn_bkpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_bkpActionPerformed
         try {
             bkp.doBackupTopics(rm.getAllTopicsAndNews());
+            JOptionPane.showMessageDialog(null, "Backup realizado com sucesso!");                
         } catch (RemoteException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao buscar os dados existentes: " + ex.getMessage());                
         }
@@ -86,6 +87,7 @@ public class BackupFrame extends javax.swing.JFrame {
     private void btn_restoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_restoreActionPerformed
         try {
             rm.restoreTopicsAndNews(bkp.restoreBackup());
+            JOptionPane.showMessageDialog(null, "Backup restaurado com sucesso!");                
         } catch (RemoteException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao restaurar dados: " + ex.getMessage());                
         }
