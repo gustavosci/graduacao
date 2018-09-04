@@ -8,14 +8,6 @@ public class ComportamentoArmazenamento {
 
     private Integer quantidadeMediasDownload;
 
-    public ComportamentoArmazenamento(final Integer fotosMes, final Integer minutosVideosMes,
-        final Integer quantidadeMediasDownload) {
-
-        this.fotosMes = fotosMes;
-        this.minutosVideosMes = minutosVideosMes;
-        this.quantidadeMediasDownload = quantidadeMediasDownload;
-    }
-
     public Integer getFotosMes() {
         return fotosMes;
     }

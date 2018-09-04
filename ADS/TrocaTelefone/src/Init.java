@@ -7,5 +7,7 @@ public class Init {
         Aceitacao aceitacao = new Aceitacao();
         Questionario questionario = aceitacao.aceitaQuestionario();
 
+        Calculo calculo = new Calculo(questionario);
+        calculo.calcular();
     }
 }

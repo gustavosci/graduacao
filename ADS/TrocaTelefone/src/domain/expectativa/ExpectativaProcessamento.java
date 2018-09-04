@@ -6,11 +6,6 @@ public class ExpectativaProcessamento {
 
     private Integer estresseTravamentosApp;
 
-    public ExpectativaProcessamento(final Integer segundosCargaApp, final Integer estresseTravamentosApp) {
-        this.segundosCargaApp = segundosCargaApp;
-        this.estresseTravamentosApp = estresseTravamentosApp;
-    }
-
     public Integer getSegundosCargaApp() {
         return segundosCargaApp;
     }

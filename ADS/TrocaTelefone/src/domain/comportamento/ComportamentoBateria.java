@@ -10,16 +10,6 @@ public class ComportamentoBateria {
 
     private Integer minutosOutrasOperacoes;
 
-    public ComportamentoBateria(final Integer minutosVideo, final Integer minutosRedesSociais,
-        final Integer minutosMusica,
-        final Integer minutosOutrasOperacoes) {
-
-        this.minutosVideo = minutosVideo;
-        this.minutosRedesSociais = minutosRedesSociais;
-        this.minutosMusica = minutosMusica;
-        this.minutosOutrasOperacoes = minutosOutrasOperacoes;
-    }
-
     public Integer getMinutosVideo() {
         return minutosVideo;
     }

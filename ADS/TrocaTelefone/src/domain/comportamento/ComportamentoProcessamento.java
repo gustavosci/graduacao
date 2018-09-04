@@ -10,15 +10,6 @@ public class ComportamentoProcessamento {
 
     private Integer travamentosMes;
 
-    public ComportamentoProcessamento(final Integer segundosBootSO, final Integer segundosCargaRedeSocial,
-        final Integer segundosRegistroFoto, final Integer travamentosMes) {
-
-        this.segundosBootSO = segundosBootSO;
-        this.segundosCargaRedeSocial = segundosCargaRedeSocial;
-        this.segundosRegistroFoto = segundosRegistroFoto;
-        this.travamentosMes = travamentosMes;
-    }
-
     public Integer getSegundosBootSO() {
         return segundosBootSO;
     }

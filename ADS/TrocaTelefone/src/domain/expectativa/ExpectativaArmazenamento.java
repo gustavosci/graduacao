@@ -8,13 +8,6 @@ public class ExpectativaArmazenamento {
 
     private Integer mediasBaixadasEsperado;
 
-    public ExpectativaArmazenamento(final Integer fotosSalvasEsperado, final Integer videosGravadosEsperado,
-        final Integer mediasBaixadasEsperado) {
-        this.fotosSalvasEsperado = fotosSalvasEsperado;
-        this.videosGravadosEsperado = videosGravadosEsperado;
-        this.mediasBaixadasEsperado = mediasBaixadasEsperado;
-    }
-
     public Integer getFotosSalvasEsperado() {
         return fotosSalvasEsperado;
     }
