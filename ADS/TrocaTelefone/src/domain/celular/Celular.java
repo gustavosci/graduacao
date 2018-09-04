@@ -6,11 +6,6 @@ public class Celular {
 
     private Integer bateria;
 
-    public Celular(final Integer armazenamento, final Integer bateria) {
-        this.armazenamento = armazenamento;
-        this.bateria = bateria;
-    }
-
     public Integer getArmazenamento() {
         return armazenamento;
     }

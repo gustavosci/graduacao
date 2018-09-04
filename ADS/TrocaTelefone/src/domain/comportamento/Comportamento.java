@@ -8,15 +8,6 @@ public class Comportamento {
 
     private ComportamentoProcessamento comportamentoProcessamento;
 
-    public Comportamento(final ComportamentoBateria comportamentoBateria,
-        final ComportamentoArmazenamento comportamentoArmazenamento,
-        final ComportamentoProcessamento comportamentoProcessamento) {
-
-        this.comportamentoBateria = comportamentoBateria;
-        this.comportamentoArmazenamento = comportamentoArmazenamento;
-        this.comportamentoProcessamento = comportamentoProcessamento;
-    }
-
     public ComportamentoBateria getComportamentoBateria() {
         return comportamentoBateria;
     }

@@ -2,7 +2,7 @@ package domain;
 
 import domain.celular.Celular;
 import domain.comportamento.Comportamento;
-import domain.decisao.Decisao;
+import domain.expectativa.Expectativa;
 
 public class Questionario {
 
@@ -10,13 +10,7 @@ public class Questionario {
 
     private Comportamento comportamento;
 
-    private Decisao decisao;
-
-    public Questionario(final Celular celular, final Comportamento comportamento, final Decisao decisao) {
-        this.celular = celular;
-        this.comportamento = comportamento;
-        this.decisao = decisao;
-    }
+    private Expectativa expectativa;
 
     public Celular getCelular() {
         return celular;
@@ -34,11 +28,11 @@ public class Questionario {
         this.comportamento = comportamento;
     }
 
-    public Decisao getDecisao() {
-        return decisao;
+    public Expectativa getExpectativa() {
+        return expectativa;
     }
 
-    public void setDecisao(final Decisao decisao) {
-        this.decisao = decisao;
+    public void setExpectativa(final Expectativa expectativa) {
+        this.expectativa = expectativa;
     }
 }

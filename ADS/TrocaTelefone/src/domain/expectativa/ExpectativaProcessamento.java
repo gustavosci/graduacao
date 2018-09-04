@@ -1,12 +1,12 @@
-package domain.decisao;
+package domain.expectativa;
 
-public class DecisaoProcessamento {
+public class ExpectativaProcessamento {
 
     private Integer segundosCargaApp;
 
     private Integer estresseTravamentosApp;
 
-    public DecisaoProcessamento(final Integer segundosCargaApp, final Integer estresseTravamentosApp) {
+    public ExpectativaProcessamento(final Integer segundosCargaApp, final Integer estresseTravamentosApp) {
         this.segundosCargaApp = segundosCargaApp;
         this.estresseTravamentosApp = estresseTravamentosApp;
     }

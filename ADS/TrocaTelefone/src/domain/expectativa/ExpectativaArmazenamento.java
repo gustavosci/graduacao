@@ -1,6 +1,6 @@
-package domain.decisao;
+package domain.expectativa;
 
-public class DecisaoArmazenamento {
+public class ExpectativaArmazenamento {
 
     private Integer fotosSalvasEsperado;
 
@@ -8,7 +8,7 @@ public class DecisaoArmazenamento {
 
     private Integer mediasBaixadasEsperado;
 
-    public DecisaoArmazenamento(final Integer fotosSalvasEsperado, final Integer videosGravadosEsperado,
+    public ExpectativaArmazenamento(final Integer fotosSalvasEsperado, final Integer videosGravadosEsperado,
         final Integer mediasBaixadasEsperado) {
         this.fotosSalvasEsperado = fotosSalvasEsperado;
         this.videosGravadosEsperado = videosGravadosEsperado;

@@ -1,10 +1,10 @@
-package domain.decisao;
+package domain.expectativa;
 
-public class DecisaoBateria {
+public class ExpectativaBateria {
 
     private Integer horasDuracaoEsperada;
 
-    public DecisaoBateria(final Integer horasDuracaoEsperada) {
+    public ExpectativaBateria(final Integer horasDuracaoEsperada) {
         this.horasDuracaoEsperada = horasDuracaoEsperada;
     }
 

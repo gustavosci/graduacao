@@ -1,6 +1,11 @@
+import domain.Questionario;
+
 public class Init {
 
     public static void main(String[] args) {
-        System.out.println("hello mundio");
+
+        Aceitacao aceitacao = new Aceitacao();
+        Questionario questionario = aceitacao.aceitaQuestionario();
+
     }
 }
