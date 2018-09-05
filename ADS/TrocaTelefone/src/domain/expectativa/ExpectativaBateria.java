@@ -2,13 +2,13 @@ package domain.expectativa;
 
 public class ExpectativaBateria {
 
-    private Integer horasDuracaoEsperada;
+    private Integer minutosDuracaoEsperada;
 
-    public Integer getHorasDuracaoEsperada() {
-        return horasDuracaoEsperada;
+    public Integer getMinutosDuracaoEsperada() {
+        return minutosDuracaoEsperada;
     }
 
-    public void setHorasDuracaoEsperada(final Integer horasDuracaoEsperada) {
-        this.horasDuracaoEsperada = horasDuracaoEsperada;
+    public void setMinutosDuracaoEsperada(final Integer minutosDuracaoEsperada) {
+        this.minutosDuracaoEsperada = minutosDuracaoEsperada;
     }
 }
