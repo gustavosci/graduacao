@@ -13,9 +13,10 @@ import domain.expectativa.ExpectativaProcessamento;
 
 public class Aceitacao {
 
-    private final Scanner scanner = new Scanner(System.in);
     private final Integer QTD_MBS_X_GB = 1024;
     private final Integer QTD_MIN_X_HORA = 60;
+
+    private final Scanner scanner = new Scanner(System.in);
 
     public Questionario aceitaQuestionario(){
 
@@ -26,6 +27,7 @@ public class Aceitacao {
         questionario.setExpectativa(aceitaExpectativa());
 
         imprime("\nObrigado :) Agora vamos analisar seus dados...\n");
+
         return questionario;
     }
 
@@ -75,6 +77,7 @@ public class Aceitacao {
     }
 
     private ComportamentoBateria aceitaComportamentoBateria(){
+
         ComportamentoBateria bateria = new ComportamentoBateria();
 
         imprime("Quantos minutos por dia você passa olhando vídeos no celular? (tempo de tela ativa, com audio pelo fone)");
@@ -128,7 +131,7 @@ public class Aceitacao {
 
         ExpectativaArmazenamento armazenamento = new ExpectativaArmazenamento();
 
-        imprime("Quantos meses voc� aceita ficar com o celular sem precisar ficar apagando arquivos por falta de mem�ria?");
+        imprime("Quantos meses você aceita ficar com o celular sem precisar ficar apagando arquivos por falta de memória?");
         armazenamento.setQtdMesesEsperado(scanner.nextInt());
         
         imprime("Quantas fotos o celular deve aceitar sem ser necessário deletar arquivos para liberar espaço?");
