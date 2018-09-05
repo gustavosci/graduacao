@@ -14,6 +14,8 @@ import domain.expectativa.ExpectativaProcessamento;
 public class Aceitacao {
 
     private final Scanner scanner = new Scanner(System.in);
+    private final Integer QTD_MBS_X_GB = 1024;
+    private final Integer QTD_MIN_X_HORA = 60;
 
     public Questionario aceitaQuestionario(){
 
@@ -34,7 +36,7 @@ public class Aceitacao {
         Celular celular = new Celular();
 
         imprime("Qual o armazenamento (GB) do aparelho?");
-        celular.setArmazenamento(scanner.nextInt());
+        celular.setArmazenamento(scanner.nextInt() * QTD_MBS_X_GB);
 
         imprime("Qual a capacidade da bateria (mAh) do aparelho?");
         celular.setBateria(scanner.nextInt());
@@ -126,13 +128,16 @@ public class Aceitacao {
 
         ExpectativaArmazenamento armazenamento = new ExpectativaArmazenamento();
 
+        imprime("Quantos meses voc� aceita ficar com o celular sem precisar ficar apagando arquivos por falta de mem�ria?");
+        armazenamento.setQtdMesesEsperado(scanner.nextInt());
+        
         imprime("Quantas fotos o celular deve aceitar sem ser necessário deletar arquivos para liberar espaço?");
         armazenamento.setFotosSalvasEsperado(scanner.nextInt());
 
-        imprime("Quantos vídeos o celular deve aceitar sem ser necessário deletar arquivos para liberar espaço?");
+        imprime("Quantos minutos de vídeos o celular deve aceitar sem ser necessário deletar arquivos para liberar espaço?");
         armazenamento.setVideosGravadosEsperado(scanner.nextInt());
 
-        imprime("Imagine um arquivo de vídeo de 1 minuto, que ocupe 5MB no dispositivo. Quantos desse arquivo o celular precisa comportar?");
+        imprime("Imagine um arquivo que ocupe 5MB no dispositivo. Quantos desse arquivo o celular precisa comportar?");
         armazenamento.setMediasBaixadasEsperado(scanner.nextInt());
 
         return armazenamento;
@@ -143,7 +148,7 @@ public class Aceitacao {
         ExpectativaBateria bateria = new ExpectativaBateria();
 
         imprime("Quantas horas a bateria do celular deve durar com uma carga completa?");
-        bateria.setHorasDuracaoEsperada(scanner.nextInt());
+        bateria.setMinutosDuracaoEsperada(scanner.nextInt() * QTD_MIN_X_HORA);
 
         return bateria;
     }

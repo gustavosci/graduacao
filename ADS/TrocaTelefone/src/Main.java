@@ -1,6 +1,6 @@
 import domain.Questionario;
 
-public class Init {
+public class Main {
 
     public static void main(String[] args) {
 

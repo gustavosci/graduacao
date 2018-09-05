@@ -1,6 +1,8 @@
 package domain.expectativa;
 
 public class ExpectativaArmazenamento {
+	
+	private Integer qtdMesesEsperado;
 
     private Integer fotosSalvasEsperado;
 
@@ -8,7 +10,15 @@ public class ExpectativaArmazenamento {
 
     private Integer mediasBaixadasEsperado;
 
-    public Integer getFotosSalvasEsperado() {
+    public Integer getQtdMesesEsperado() {
+		return qtdMesesEsperado;
+	}
+
+	public void setQtdMesesEsperado(Integer qtdMesesEsperado) {
+		this.qtdMesesEsperado = qtdMesesEsperado;
+	}
+
+	public Integer getFotosSalvasEsperado() {
         return fotosSalvasEsperado;
     }
 
